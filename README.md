@@ -1,14 +1,6 @@
 # Population Genomic Analysis Pipeline
 
-Analysis code used in this study. The scripts are grouped into four modules
-that follow the order of the analyses in the manuscript; inside every module
-the files are numbered in the order in which they are meant to be run.
-
-Every script contains a header describing its purpose, its inputs and its
-outputs. All software paths, reference resource directories and analysis
-parameters are declared as variables at the top of each script and can be
-overridden from the environment or from the command line, so that no absolute
-path has to be edited inside the code, for example:
+Analysis code used in this study. 
 
 ```bash
 BEAGLE_JAR=/opt/beagle/beagle.22Jul22.46e.jar bash 1-ihs.sh
@@ -86,14 +78,3 @@ The pipeline calls the following external tools, which have to be available on
 - `R` with `ggplot2`, `ggrepel`, `ggrastr`, `dplyr`, `data.table`, `uwot`,
   `scales`, `admixtools`
 - `Python 3` with `matplotlib`, `geneview`
-
-## Notes
-
-Some steps rely on small helper scripts that are distributed with the
-corresponding tool or with the original publication (`pairwise.perl`,
-`Calculate_T_stat.py`, `allF3pairs.R`, `sourcefindv2.R`, `score_summary.r`,
-`plot_contour.r`, `RunPBS.py`, `derta.DAF.py`, `summary.sh`). Their location
-is configurable at the top of the script that calls them.
-
-Sample identifiers, population labels and file names used as defaults are
-placeholders and have to be replaced by those of the data set under analysis.
