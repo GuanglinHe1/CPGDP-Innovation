@@ -26,6 +26,7 @@ Population structure, admixture modelling and demographic history.
 
 | Script | Description |
 | --- | --- |
+| `0-build-reference-panel.sh` | Reference-panel variant cleaning, target-sample phasing/imputation, and imputation R² evaluation; all paths are supplied at runtime |
 | `1-pca-smartpca.sh` | Principal component analysis with smartpca |
 | `2-ld-pruning.sh` | LD pruning for the UMAP and ADMIXTURE analyses |
 | `3-umap.R` | UMAP embedding of the leading principal components |
@@ -78,3 +79,22 @@ The pipeline calls the following external tools, which have to be available on
 - `R` with `ggplot2`, `ggrepel`, `ggrastr`, `dplyr`, `data.table`, `uwot`,
   `scales`, `admixtools`
 - `Python 3` with `matplotlib`, `geneview`
+
+## Reference-panel example
+
+The reference-panel workflow contains no bundled data, credentials, or
+institution-specific paths. Supply local files and software locations when
+running it:
+
+```bash
+# Clean per-chromosome VCFs. The template must include {chr}.
+bash 2-population-history/0-build-reference-panel.sh clean \
+  'input/reference.chr{chr}.vcf.gz' output/reference-clean
+
+# The sample list contains: input_vcf <TAB> sample_id
+GENETIC_MAP=input/chr2.gmap \
+PHASING_REFERENCE=input/phased-reference.bcf \
+MINIMAC_REFERENCE=input/reference-panel.msav \
+bash 2-population-history/0-build-reference-panel.sh phase-impute \
+  input/samples.tsv output/imputation
+```
