@@ -7,7 +7,7 @@
 # listed source populations relative to a set of right (outgroup) populations,
 # and reports the admixture proportions with their standard errors.
 #
-# Requirements: AdmixTools (qpAdm)
+# Requirements: AdmixTools (qpAdm, qpWave)
 #
 # Usage:
 #   bash 9-qpadm.sh <PAR_FILE>
@@ -19,3 +19,4 @@ set -euo pipefail
 PAR_FILE="${1:?usage: bash 9-qpadm.sh <PAR_FILE>}"
 
 qpAdm -p "${PAR_FILE}" > "qpAdm.${PAR_FILE}"
+qpWave -p "${PAR_FILE}" > "qpWave.${PAR_FILE}"
